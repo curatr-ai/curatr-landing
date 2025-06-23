@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curatr - Never Let Wonder Slip Away Again</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .hero {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+        
+        .problem {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .solution {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .feature p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .signup-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+        
+        .signup-form h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .form-group {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .form-group input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .social-proof {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .waitlist-count {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .form-group {
+                flex-direction: column;
+            }
+        }
+        
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <div class="logo">Curatr</div>
+            <div class="tagline">Never Let Wonder Slip Away Again</div>
+            
+            <div class="problem">
+                You see something fascinating—a book review, a restaurant, a travel idea—but you're busy. By the time you have a moment to explore it, it's gone. Lost in the endless scroll of modern life.
+            </div>
+            
+            <div class="solution">
+                Curatr captures those sparks of curiosity instantly, organizes them intelligently, and serves them back when you're ready to explore. Your personal curator for a life full of wonder.
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Capture</h3>
+                <p>Save anything in seconds without breaking your flow. Links, photos, voice notes—all captured effortlessly.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <h3>Smart Organization</h3>
+                <p>AI automatically categorizes and enriches your discoveries. Books get summaries, restaurants get reviews.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">✨</div>
+                <h3>Curated Discovery</h3>
+                <p>Get personalized recommendations based on your interests. Transform saving into discovering.</p>
+            </div>
+        </div>
+        
+        <div class="signup-form">
+            <h2>Join the Waitlist</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">Be the first to experience frictionless curiosity capture</p>
+            
+            <form id="waitlistForm">
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn">Join Waitlist</button>
+                </div>
+            </form>
+            
+            <div id="successMessage" class="success-message">
+                Thanks for joining! We'll keep you updated on Curatr's launch.
+            </div>
+        </div>
+        
+        <div class="social-proof">
+            <div class="waitlist-count" id="waitlistCount">127</div>
+            <p>curious minds already on the waitlist</p>
+        </div>
+    </div>
+    
+    <script>
+        let waitlistCount = 127;
+        
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const form = document.getElementById('waitlistForm');
+            const successMessage = document.getElementById('successMessage');
+            const countElement = document.getElementById('waitlistCount');
+            
+            // Simple email validation
+            if (email && email.includes('@')) {
+                // Hide form, show success message
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Update waitlist count
+                waitlistCount++;
+                countElement.textContent = waitlistCount;
+                
+                // In a real implementation, you'd send this to your backend
+                console.log('Email submitted:', email);
+                
+                // Store in localStorage for demo purposes
+                let emails = JSON.parse(localStorage.getItem('waitlistEmails') || '[]');
+                emails.push({
+                    email: email,
+                    timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('waitlistEmails', JSON.stringify(emails));
+            }
+        });
+        
+        // Add some visual flair
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.querySelector('.cursor');
+            if (!cursor) {
+                const cursorDiv = document.createElement('div');
+                cursorDiv.className = 'cursor';
+                cursorDiv.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: radial-gradient(circle, rgba(102,126,234,0.3) 0%, transparent 70%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    transition: transform 0.1s;
+                `;
+                document.body.appendChild(cursorDiv);
+            }
+            
+            document.querySelector('.cursor').style.left = e.clientX - 10 + 'px';
+            document.querySelector('.cursor').style.top = e.clientY - 10 + 'px';
+        });
+    </script>
+</body>
+</html>
