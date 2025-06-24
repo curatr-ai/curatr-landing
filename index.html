@@ -3,325 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curatr - Spotted something cool? Drop it in Curatr</title>
-    
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2VQHMDZ36"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-L2VQHMDZ36');
-    
-</script>
+    <title>Curatr - Capture now. Curate later</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1a1a1a;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            overflow-x: hidden;
         }
-        
+
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
+            padding: 0 20px;
         }
-        
+
         .hero {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
         }
-        
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 60px 40px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 800px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .logo {
             font-size: 3rem;
             font-weight: 800;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
         }
-        
+
         .tagline {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #444;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 32px;
+            font-weight: 400;
         }
-        
-        .problem {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 2rem;
+
+        .description {
+            font-size: 1.125rem;
+            color: #4b5563;
+            margin-bottom: 48px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
         }
-        
-        .solution {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 1.5rem;
-            border-radius: 15px;
-            color: white;
-        }
-        
+
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            gap: 32px;
+            margin-top: 48px;
         }
-        
+
         .feature {
+            text-align: center;
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
             background: rgba(255, 255, 255, 0.8);
-            padding: 1.5rem;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
         }
-        
+
         .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .feature h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        
-        .feature p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .signup-form {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            margin-bottom: 2rem;
-        }
-        
-        .signup-form h2 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        
-        .form-group {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 16px;
             display: flex;
-            gap: 1rem;
-            max-width: 400px;
-            margin: 0 auto;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 10px 20px -8px rgba(102, 126, 234, 0.3);
         }
-        
-        .form-group input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
+
+        .feature h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
         }
-        
-        .btn {
+
+        .feature p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1.1rem;
+            margin-top: 32px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -8px rgba(102, 126, 234, 0.3);
         }
-        
-        .btn:hover {
+
+        .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 15px 30px -8px rgba(102, 126, 234, 0.4);
         }
-        
-        .social-proof {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 1.5rem;
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
-        
-        .waitlist-count {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #667eea;
-            margin-bottom: 0.5rem;
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
         }
-        
+
+        .floating-circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .hero {
-                padding: 2rem 1rem;
+            .hero-content {
+                padding: 40px 24px;
+                margin: 20px;
             }
             
             .logo {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .tagline {
-                font-size: 1.2rem;
+            .features {
+                grid-template-columns: 1fr;
+                gap: 24px;
             }
-            
-            .form-group {
-                flex-direction: column;
-            }
-        }
-        
-        .success-message {
-            display: none;
-            background: #4CAF50;
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <div class="logo">Curatr</div>
-            <div class="tagline">Capture now. Curate later</div>
-            
-            <div class="problem">
-                You see something intriguing—a book review, a restaurant, a travel idea—but you're busy. By the time you have a moment to explore it, it's gone. Lost in the endless scroll of modern life.
-            </div>
-            
-            <div class="solution">
-                Curatr captures those sparks of curiosity instantly, organises them intelligently, and serves them back when you're ready to explore. Your personal curator for a life full of wonder.
-            </div>
-        </div>
-        
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h3>Instant Capture</h3>
-                <p>Save anything in seconds without breaking your flow. Links, photos, voice notes—all captured effortlessly.</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">🤖</div>
-                <h3>Smart Organisation</h3>
-                <p>AI automatically categorises and enriches your discoveries.</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">✨</div>
-                <h3>Curated Discovery</h3>
-                <p>Get personalised recommendations based on your interests. Transform saving into discovering.</p>
-            </div>
-        </div>
-        
-        <div class="signup-form">
-            <h2>Join the Waitlist</h2>
-            <p style="margin-bottom: 1.5rem; color: #666;">Be the first to experience frictionless curiosity capture</p>
-            
-            <form id="waitlistForm">
-                <div class="form-group">
-                    <input type="email" id="email" placeholder="Enter your email" required>
-                    <button type="submit" class="btn">Join Waitlist</button>
-                </div>
-            </form>
-            
-            <div id="successMessage" class="success-message">
-                Thanks for joining! We'll keep you updated on Curatr's launch.
-            </div>
-        </div>
-        
-        <div class="social-proof">
-            <div class="waitlist-count" id="waitlistCount">127</div>
-            <p>curious minds already on the waitlist</p>
-        </div>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
     </div>
-    
-    <script>
-        let waitlistCount = 127;
-        
-        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const form = document.getElementById('waitlistForm');
-            const successMessage = document.getElementById('successMessage');
-            const countElement = document.getElementById('waitlistCount');
-            
-            // Simple email validation
-            if (email && email.includes('@')) {
-                // Hide form, show success message
-                form.style.display = 'none';
-                successMessage.style.display = 'block';
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="logo">Curatr</h1>
+                <p class="tagline">Capture now. Curate later</p>
                 
-                // Update waitlist count
-                waitlistCount++;
-                countElement.textContent = waitlistCount;
+                <p class="description">
+                    You see something intriguing—a book review, a restaurant, a travel idea—but you're busy. By the time you have a moment to explore it, it's gone. Lost in the endless scroll of modern life.
+                </p>
                 
-                // In a real implementation, you'd send this to your backend
-                console.log('Email submitted:', email);
-                
-                // Store in localStorage for demo purposes
-                let emails = JSON.parse(localStorage.getItem('waitlistEmails') || '[]');
-                emails.push({
-                    email: email,
-                    timestamp: new Date().toISOString()
-                });
-                localStorage.setItem('waitlistEmails', JSON.stringify(emails));
-            }
-        });
-        
-        // Add some visual flair
-        document.addEventListener('mousemove', function(e) {
-            const cursor = document.querySelector('.cursor');
-            if (!cursor) {
-                const cursorDiv = document.createElement('div');
-                cursorDiv.className = 'cursor';
-                cursorDiv.style.cssText = `
-                    position: fixed;
-                    width: 20px;
-                    height: 20px;
-                    background: radial-gradient(circle, rgba(102,126,234,0.3) 0%, transparent 70%);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 9999;
-                    transition: transform 0.1s;
-                `;
-                document.body.appendChild(cursorDiv);
-            }
-            
-            document.querySelector('.cursor').style.left = e.clientX - 10 + 'px';
-            document.querySelector('.cursor').style.top = e.clientY - 10 + 'px';
-        });
-    </script>
+                <p class="description">
+                    Curatr captures those sparks of curiosity instantly, organises them intelligently, and serves them back when you're ready to explore. Your personal curator for a life full of wonder.
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                        </div>
+                        <h3>Instant Capture</h3>
+                        <p>Save anything in seconds without breaking your flow. Links, photos, voice notes—all captured effortlessly.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+                            </svg>
+                        </div>
+                        <h3>Smart Organisation</h3>
+                        <p>AI automatically categorises and enriches your discoveries.</p>
+                    </div>
+                    
+                    <div class="feature">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 11H7l5-5 5 5h-2v7h-6v-7z"/>
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3>Curated Discovery</h3>
+                        <p>Get personalised recommendations based on your interests. Transform saving into discovering.</p>
+                    </div>
+                </div>
+
+                <a href="#" class="cta-button">Get Early Access</a>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
