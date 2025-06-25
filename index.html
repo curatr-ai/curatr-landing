@@ -1,7 +1,4 @@
 <script>
-        // Replace 'YOUR_GOOGLE_SCRIPT_URL' with the Web App URL from Step 2
-        const GOOGLE_SCRIPT_URL = <https://script.google.com/macros/s/AKfycbzD2Pi_zAqx9UZemb81RORf2_FSYUi0gBQSb4u2KenaqKSvYaCdH86vb8WAZOxGHUCTZg/exec>;
-        
         document.getElementById('emailForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -19,7 +16,6 @@
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             
             if (!emailRegex.test(email)) {
-                errorMessage.textContent = 'Please enter a valid email address.';
                 errorMessage.style.display = 'block';
                 return;
             }
@@ -28,36 +24,49 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Signing up...';
             
-            // Send to Google Sheets
-            const formData = new FormData();
-            formData.append('email', email);
-            formData.append('source', 'Landing Page');
-            
-            fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            // Submit to Google Sheets
+            submitToGoogleSheets(email)
+                .then(() => {
                     // Show success message
                     successMessage.style.display = 'block';
                     emailInput.value = '';
-                } else {
-                    throw new Error('Signup failed');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                errorMessage.textContent = 'Something went wrong. Please try again.';
-                errorMessage.style.display = 'block';
-            })
-            .finally(() => {
-                // Reset button
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Get Early Access';
-            });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    errorMessage.textContent = 'Something went wrong. Please try again.';
+                    errorMessage.style.display = 'block';
+                })
+                .finally(() => {
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get Early Access';
+                });
         });
+
+        async function submitToGoogleSheets(email) {
+            // Replace 'YOUR_SHEET_ID' with your actual Google Sheets ID
+            const sheetId = 'https://docs.google.com/spreadsheets/d/1r4IrMGaCnOz4_VKJoe8JRSp1qvwMUGPGkVXvuQ352q8/edit?usp=sharing';
+            const sheetName = 'Curatr Email Signups'; // or whatever you named your sheet
+            
+            const formData = new FormData();
+            formData.append('Email', email);
+            formData.append('Timestamp', new Date().toISOString());
+            formData.append('Source', 'Landing Page');
+            
+            // Using Google Sheets as a simple database via Google Apps Script
+            const scriptUrl = `https://script.google.com/a/macros/furthermyfuture.com/s/AKfycbwsCYJU3B4IMPkNG01IdnU2dZ3sFlFFdJusYd-8fhF9pcXsXQ2NPjrFIPNG8KjFy8nM/exec`;
+            
+            const response = await fetch(scriptUrl, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to submit');
+            }
+            
+            return response.json();
+        }
     </script><!DOCTYPE html>
 <html lang="en">
 <head>
