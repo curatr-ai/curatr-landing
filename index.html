@@ -1,4 +1,7 @@
 <script>
+        // Replace 'YOUR_GOOGLE_SCRIPT_URL' with the Web App URL from Step 2
+        const GOOGLE_SCRIPT_URL = https://script.google.com/macros/s/AKfycbzDOouWXzwWPMsO2MxvZw_yfWnAKyAw5BLQCx2fGTcXN9drly5JTpavcj7cwsns2094WA/exec;
+        
         document.getElementById('emailForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -16,6 +19,7 @@
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             
             if (!emailRegex.test(email)) {
+                errorMessage.textContent = 'Please enter a valid email address.';
                 errorMessage.style.display = 'block';
                 return;
             }
@@ -24,27 +28,35 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Signing up...';
             
-            // Simulate API call (replace with your actual endpoint)
-            setTimeout(() => {
-                // Store email in memory (replace with actual backend integration)
-                console.log('Email submitted:', email);
-                
-                // Show success message
-                successMessage.style.display = 'block';
-                emailInput.value = '';
-                
+            // Send to Google Sheets
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('source', 'Landing Page');
+            
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    emailInput.value = '';
+                } else {
+                    throw new Error('Signup failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = 'Something went wrong. Please try again.';
+                errorMessage.style.display = 'block';
+            })
+            .finally(() => {
                 // Reset button
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Get Early Access';
-                
-                // Optional: You could integrate with services like:
-                // - Mailchimp API
-                // - ConvertKit API  
-                // - Your own backend
-                // - Google Sheets API
-                // - Airtable API
-                
-            }, 1000);
+            });
         });
     </script><!DOCTYPE html>
 <html lang="en">
